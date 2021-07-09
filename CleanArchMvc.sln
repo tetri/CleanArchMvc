@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchMvc.Infra.IoC", "C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchMvc.WebUI", "CleanArchMvc.WebUI\CleanArchMvc.WebUI.csproj", "{81F1FF96-9CCA-4C7E-A31D-20A9A02764CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchMvc.Domain.Tests", "CleanArchMvc.Domain.Tests\CleanArchMvc.Domain.Tests.csproj", "{5850EBE7-3CB2-406E-BC1E-B76FD576757D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchMvc.Domain.Tests", "CleanArchMvc.Domain.Tests\CleanArchMvc.Domain.Tests.csproj", "{5850EBE7-3CB2-406E-BC1E-B76FD576757D}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E84BDE61-4398-4E74-96B1-3541E827E5BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{5850EBE7-3CB2-406E-BC1E-B76FD576757D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5850EBE7-3CB2-406E-BC1E-B76FD576757D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5850EBE7-3CB2-406E-BC1E-B76FD576757D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E84BDE61-4398-4E74-96B1-3541E827E5BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E84BDE61-4398-4E74-96B1-3541E827E5BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E84BDE61-4398-4E74-96B1-3541E827E5BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E84BDE61-4398-4E74-96B1-3541E827E5BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
