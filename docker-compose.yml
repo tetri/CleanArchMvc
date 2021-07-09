@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  cleanarchmvc.webui:
+    container_name: cleanarchmvc.webui
+    image: ${DOCKER_REGISTRY-}cleanarchmvcwebui
+    build:
+      context: .
+      dockerfile: CleanArchMvc.WebUI/Dockerfile
+    networks:
+      - cleanarch-network
+    depends_on:
+      - cleanarchmvc.database
+
+  cleanarchmvc.database:
+    container_name: cleanarchmvc.database
+    image: "mcr.microsoft.com/mssql/server:2017-latest-ubuntu"
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "tetriDev7&"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"
+    networks:
+      - cleanarch-network
+
+networks: 
+    cleanarch-network:
+        driver: bridge

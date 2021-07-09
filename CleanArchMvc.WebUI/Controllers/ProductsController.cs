@@ -1,8 +1,8 @@
-﻿using CleanArchMvc.Application.Interfaces;
+﻿using System.Threading.Tasks;
+
+using CleanArchMvc.Application.Interfaces;
 
 using Microsoft.AspNetCore.Mvc;
-
-using System.Threading.Tasks;
 
 namespace CleanArchMvc.WebUI.Controllers
 {
@@ -17,8 +17,8 @@ namespace CleanArchMvc.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var result = await _productService.GetProductsAsync();
-            return View(result);
+            var products = await _productService.GetProductsAsync();
+            return View(products);
         }
     }
 }
