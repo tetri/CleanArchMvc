@@ -1,11 +1,11 @@
-﻿using CleanArchMvc.Domain.Entities;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+
+using CleanArchMvc.Domain.Entities;
 using CleanArchMvc.Domain.Interfaces;
 using CleanArchMvc.Infra.Data.Context;
 
 using Microsoft.EntityFrameworkCore;
-
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace CleanArchMvc.Infra.Data.Repositories
 {
@@ -26,15 +26,19 @@ namespace CleanArchMvc.Infra.Data.Repositories
 
         public async Task<Product> GetByIdAsync(int? id)
         {
-            return await _productContext.Products.FindAsync(id);
-        }
+            //return await _productContext.Products.FindAsync(id);
 
-        public async Task<Product> GetProductCategoryAsync(int? id)
-        {
             return await _productContext.Products
                             .Include(c => c.Category) //eager loading
                             .SingleOrDefaultAsync(p => p.Id.Equals(id));
         }
+
+        //public async Task<Product> GetProductCategoryAsync(int? id)
+        //{
+        //    return await _productContext.Products
+        //                    .Include(c => c.Category) //eager loading
+        //                    .SingleOrDefaultAsync(p => p.Id.Equals(id));
+        //}
 
         public async Task<IEnumerable<Product>> GetProductsAsync()
         {
