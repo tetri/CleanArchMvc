@@ -20,11 +20,14 @@
     </div>
 </div>
 <br />
-<div class="panel panel-default">
-    <table class="table table-striped">
+<div class="panel panel-default table-responsive">
+    <table class="table table-hover table-striped">
         <thead>
             <tr>
-                <th>
+                <th scope="col">
+                    #
+                </th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
                 <th></th>
@@ -34,19 +37,20 @@
             @foreach (var item in Model)
             {
                 <tr>
+                    <th scope="row">@Html.DisplayFor(modelItem => item.Id)</th>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Name)
+                        <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
                     </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" class="btn btn-warning">
-                            <span class="fas fa-edit">Edit</span>
+                    <td align="right">
+                        <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" class="btn btn-sm btn-outline-warning">
+                            <i class="fas fa-edit"></i> Edit
                         </a>
-
-                        <a asp-action="Details" asp-route-id="@item.Id" title="Details" class="btn btn-primary">
+                        <!--
+                        <a asp-action="Details" asp-route-id="@item.Id" title="Details" class="btn btn-sm btn-outline-primary">
                             <span class="fas fa-search">Details</span>
                         </a>
-
-                        <a asp-action="Delete" asp-route-id="@item.Id" title="Delete" class="btn btn-danger">
+                        -->
+                        <a asp-action="Delete" asp-route-id="@item.Id" title="Delete" class="btn btn-sm btn-outline-danger">
                             <span class="fas fa-trash-alt">Delete</span>
                         </a>
                     </td>
