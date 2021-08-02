@@ -15,8 +15,8 @@ namespace CleanArchMvc.Application.Products.Handlers
         private readonly IProductRepository _productRepository;
         public ProductUpdateCommandHandler(IProductRepository productRepository)
         {
-            _productRepository = productRepository;
-
+            _productRepository = productRepository ??
+                throw new ArgumentNullException(nameof(productRepository));
         }
 
         public async Task<Product> Handle(ProductUpdateCommand request, CancellationToken cancellationToken)
@@ -24,7 +24,7 @@ namespace CleanArchMvc.Application.Products.Handlers
             var product = await _productRepository.GetByIdAsync(request.Id);
 
             if (product == null)
-                throw new ApplicationException("Error could not be found.");
+                throw new ApplicationException($"Entity could not be found.");
 
             product.Update(request.Name, request.Description, request.Price, request.Stock, request.Image, request.CategoryId);
             return await _productRepository.UpdateAsync(product);

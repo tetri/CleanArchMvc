@@ -16,7 +16,6 @@ namespace CleanArchMvc.Application.Products.Handlers
         public ProductCreateCommandHandler(IProductRepository productRepository)
         {
             _productRepository = productRepository;
-
         }
 
         public async Task<Product> Handle(ProductCreateCommand request, CancellationToken cancellationToken)
