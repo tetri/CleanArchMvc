@@ -19,8 +19,8 @@ namespace CleanArchMvc.Infra.IoC
     {
         public static IServiceCollection AddInfraestructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ApplicationDbContext>(options => options
-                .UseSqlServer(configuration.GetConnectionString("SQLServer"), b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+            //services.AddDbContext<ApplicationDbContext>(options => options
+            //    .UseSqlServer(configuration.GetConnectionString("SQLServer"), b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
             services.AddDbContext<ApplicationDbContext>(options => options
                 .UseNpgsql(configuration.GetConnectionString("PostgreSQL"), b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
