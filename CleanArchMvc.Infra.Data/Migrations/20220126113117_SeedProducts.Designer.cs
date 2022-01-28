@@ -2,20 +2,22 @@
 using CleanArchMvc.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CleanArchMvc.Infra.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220126113117_SeedProducts")]
+    partial class SeedProducts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
-                .HasAnnotation("ProductVersion", "5.0.12")
+                .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
             modelBuilder.Entity("CleanArchMvc.Domain.Entities.Category", b =>
@@ -52,52 +54,6 @@ namespace CleanArchMvc.Infra.Data.Migrations
                         {
                             Id = 3,
                             Name = "Acessórios"
-                        });
-                });
-
-            modelBuilder.Entity("CleanArchMvc.Domain.Entities.Pais", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)")
-                        .HasColumnName("name");
-
-                    b.Property<string>("Sigla")
-                        .IsRequired()
-                        .HasMaxLength(3)
-                        .HasColumnType("character varying(3)")
-                        .HasColumnName("sigla");
-
-                    b.HasKey("Id")
-                        .HasName("pk_paises");
-
-                    b.ToTable("paises");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Brasil",
-                            Sigla = "BR"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Paraguai",
-                            Sigla = "PY"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Argentina",
-                            Sigla = "AR"
                         });
                 });
 

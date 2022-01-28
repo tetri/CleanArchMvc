@@ -28,9 +28,11 @@ namespace CleanArchMvc.Infra.IoC
 
             services.AddScoped<ICategoryRepository, CategoryRepository>(); //recomendação para projetos web
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IPaisRepository,PaisRepository>();
 
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IPaisService, PaisService>();
 
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
             services.AddAutoMapper(typeof(DTOToCommandMappingProfile));
