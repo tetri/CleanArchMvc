@@ -1,6 +1,6 @@
-﻿using CleanArchMvc.Domain.Validation;
+﻿using System.Collections.Generic;
 
-using System.Collections.Generic;
+using CleanArchMvc.Domain.Validation;
 
 namespace CleanArchMvc.Domain.Entities
 {
