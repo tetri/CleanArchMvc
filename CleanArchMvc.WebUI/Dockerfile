@@ -1,11 +1,9 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 COPY ["CleanArchMvc.WebUI/CleanArchMvc.WebUI.csproj", "CleanArchMvc.WebUI/"]
 COPY ["CleanArchMvc.Infra.IoC/CleanArchMvc.Infra.IoC.csproj", "CleanArchMvc.Infra.IoC/"]
@@ -22,5 +20,15 @@ RUN dotnet publish "CleanArchMvc.WebUI.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
+
+COPY cert.pfx cert.pfx
+
+ENV ASPNETCORE_Kestrel__Certificates__Default__Path=cert.pfx
+ENV ASPNETCORE_Kestrel__Certificates__Default__Password=Cert123
+ENV ASPNETCORE_URLS=https://+:443;http://+:80
+
+RUN mkdir -p /keys
+VOLUME /keys
+
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "CleanArchMvc.WebUI.dll"]

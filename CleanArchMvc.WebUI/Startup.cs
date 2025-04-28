@@ -1,7 +1,12 @@
+using System.IO;
+
+using CleanArchMvc.Infra.Data.Context;
 using CleanArchMvc.Infra.IoC;
 
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -17,27 +22,27 @@ namespace CleanArchMvc.WebUI
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddInfraestructure(Configuration);
 
             services.AddControllersWithViews();
+
+            services.AddDataProtection()
+                .PersistKeysToFileSystem(new DirectoryInfo("/app/keys"))
+                .SetApplicationName("CleanArchMvc");
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env) //, ApplicationDbContext ApplicationDbContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext DbContext)
         {
-            //ApplicationDbContext.Database.Migrate();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                DbContext.Database.Migrate();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
@@ -51,8 +56,6 @@ namespace CleanArchMvc.WebUI
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    //pattern: "{controller=Categories}/{action=Index}/{id?}");
-                    //pattern: "{controller=Products}/{action=Index}/{id?}");
                     pattern: "{controller=Home}/{action=Index}");
             });
         }
