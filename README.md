@@ -1,8 +1,8 @@
 # CleanArchMvc
 
-![Build Status](https://img.shields.io/github/actions/workflow/status/tetri/CleanArchMvc/build.yml?branch=main)
-![License](https://img.shields.io/github/license/tetri/CleanArchMvc)
-![Last Commit](https://img.shields.io/github/last-commit/tetri/CleanArchMvc)
+![Build Status](https://img.shields.io/github/actions/workflow/status/tetri/CleanArchMvc/build-and-test.yml?branch=dotnet9.0)
+![License](https://img.shields.io/github/license/tetri/CleanArchMvc?branch=dotnet9.0)
+![Last Commit](https://img.shields.io/github/last-commit/tetri/CleanArchMvc?branch=dotnet9.0)
 
 ## Sobre o Projeto
 
